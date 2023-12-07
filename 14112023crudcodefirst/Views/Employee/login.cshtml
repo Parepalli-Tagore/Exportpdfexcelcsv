@@ -1,0 +1,26 @@
+﻿@model _14112023crudcodefirst.Models.person
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p style="color: red;">@ViewData["ErrorMessage"]</p>
+}
+
+<form asp-controller="Employee" asp-action="login" method="post">
+    <div>
+        <label asp-for="username">Username:</label>
+        <input asp-for="username" />
+    </div>
+    <div>
+        <label asp-for="password">Password:</label>
+        <input asp-for="password" type="password" />
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+    @ViewBag.message
+</form>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<_14112023crudcodefirst.Models.StudentModel>
+
+@{
+    ViewData["Title"] = "StudentDetails";
+}
+<!-- Modify the Index.cshtml view with a dropdown for file format selection -->
+
+
+<!-- Display the table with user data -->
+
+<h2>Saved Data</h2>
+
+<table border="1">
+    <!-- ... existing table code ... -->
+</table>
+
+<!-- Add export form with dropdown -->
+@using (Html.BeginForm("Export", "Home", FormMethod.Post))
+{
+    @Html.DropDownList("exportFormat",new List<SelectListItem>
+            {
+                new SelectListItem {Text="Excel",Value="Excel"},
+                new SelectListItem{Text= "Pdf",Value="Pdf"},
+                new SelectListItem{Text= "Csv",Value="Csv"}
+
+            })
+        <input type="submit" value="Export"/>
+}
+
+
+<h1>StudentDetails</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Studentid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Studentid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Studentid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
